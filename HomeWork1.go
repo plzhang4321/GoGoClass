@@ -17,10 +17,10 @@ func selectData(db *sql.DB) {
 		return
 	}
 	for rows.Next() {
-		rows.Scan(&id, &age, &name)
+		 rows.Scan(&id, &age, &name)
 		if err != nil {
-			if err == sql.ErrNoRows{
-				errors.Wrap(err, "no such data")
+			errors.Wrap(err, "no such data")
+			return
 			}
 		}
 		log.Printf("get data, id: %d, name: %s, age: %d", id, name, age)
