@@ -40,12 +40,12 @@ func main() {
 		return ser.Shutdown(err)
 	})
 
-	group.Go(func() error {
+	g.Go(func() error {
 		for {
 			select {
-			case <-errCtx.Done():
-				return errCtx.Err() //全部关闭
-			case <-chanel:
+			case <-err.Done():
+				return err.Err() //全部关闭
+			case <-ch:
 				cancel()
 			}
 		}
