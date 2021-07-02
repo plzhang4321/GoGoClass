@@ -2,7 +2,7 @@ package main
 
 import (
 	"database/sql"
-    _ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/pkg/errors"
 	"log"
 )
@@ -17,13 +17,11 @@ func selectData(db *sql.DB) {
 		return
 	}
 	for rows.Next() {
-		 rows.Scan(&id, &age, &name)
+		rows.Scan(&id, &age, &name)
 		if err != nil {
 			errors.Wrap(err, "no such data")
 			return
-			}
 		}
-		log.Printf("get data, id: %d, name: %s, age: %d", id, name, age)
 	}
-
+	log.Printf("get data, id: %d, name: %s, age: %d", id, name, age)
 }
