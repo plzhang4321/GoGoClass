@@ -62,9 +62,8 @@ func handle(conn *net.Conn) {
 	} else {
 		mu := sync.Mutex{}
 		mu.Lock()
-		now := head.Prev()
-		value := now.Value.(int)
-		now.Value = value + 1
+		value := head.Value.(int)
+		head.Value = value + 1
 		mu.Unlock()
 		// do something
 		(*conn).Write([]byte("Congratulation"))
